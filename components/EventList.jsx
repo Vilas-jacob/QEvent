@@ -1,4 +1,5 @@
 'use client';
+import React, {Suspense} from "react";
 const { useSearchParams } = require("next/navigation");
 const { default: EventCard } = require("./EventCard");
 
@@ -20,6 +21,7 @@ const EventList = ({eventsData})=>{
     //const filteredEvents = artistName ? eventsData.filter((event)=>event.artist === artistName) : eventsData;
     //console.log("FilteredEvents.....", filteredEvents);
     return (
+        <Suspense fallback={<div>Loading Events..</div>}>
         <div className="grid grid-cols-3 gap-4">
             {
                 filteredEvents.map((event)=>(
@@ -27,6 +29,7 @@ const EventList = ({eventsData})=>{
                 ))
             }
         </div>
+        </Suspense>
     );
 };
 
